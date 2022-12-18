@@ -18,16 +18,15 @@ class TapperView : LinearLayout {
         attrs,
         defStyleAttr
     )
-    init {
-        val binding = ViewTapperBinding.inflate(
-            context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater,
-            this,
-            true)
 
-        binding.button.apply {
-            setOnClickListener {
-                binding.textView.text = Random.nextInt(0,1000).toString()
-            }
+    private val binding : ViewTapperBinding = ViewTapperBinding.inflate(
+        context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater,
+        this,
+        true)
+
+    fun setOnButtonClickListener(block : ()->Unit){
+        binding.button.setOnClickListener {
+            block.invoke()
         }
     }
 
